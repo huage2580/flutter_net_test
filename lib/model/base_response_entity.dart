@@ -20,6 +20,7 @@ class BaseResponseEntity<T> {
 		code = json['code'];
 		switch(T.toString()){//基本类型
 			case 'int':
+			case 'double':
 			case 'String':
 			case 'bool':{
 				result = json['result'];
