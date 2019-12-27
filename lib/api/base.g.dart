@@ -49,4 +49,21 @@ class _BaseApi implements BaseApi {
     final value = BaseResponseEntity<String>.fromJson(_result.data);
     return Future.value(value);
   }
+
+  @override
+  test3() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request('/test3',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = BaseResponseEntity<TestMutilEntity>.fromJson(_result.data);
+    return Future.value(value);
+  }
 }

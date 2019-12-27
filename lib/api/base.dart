@@ -2,6 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_net_test/model/base_response_entity.dart';
 import 'package:flutter_net_test/model/test2_bean_entity.dart';
+import 'package:flutter_net_test/model/test_mutil_entity.dart';
 import 'package:retrofit/http.dart';
 
 part 'base.g.dart';
@@ -16,5 +17,8 @@ abstract class BaseApi{
 
   @GET("/test2")
   Future<BaseResponseEntity<String>> test2();
+
+  @GET("/test3")
+  Future<BaseResponseEntity<TestMutilEntity>> test3();
 
 }

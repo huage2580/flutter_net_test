@@ -34,13 +34,20 @@ class TestState extends State<TestPage> {
 
 void getHttp() async {
   Dio api = new Dio();
+  /**
+   * 异步解析json
+   */
   api.transformer = FlutterTransformer();
+  /**
+   * 业务异常拦截器
+   */
   api.interceptors.add(InterceptorsWrapper(onError: (error) async {
     if (error.type == DioErrorType.DEFAULT) {
       if (error.error is ApiException) {
         ApiException apiException = error.error;
         print(
             "接口业务异常返回：code =>[${apiException.code}],msg=>${apiException.msg}");
+        //TODO 根据错误码进行业务操作
       }
     }
     return error;
@@ -53,7 +60,19 @@ void getHttp() async {
       throw ApiException(temp.code, temp.msg);
     }
   }));
+  /**
+   * header参数填充
+   */
+  api.interceptors.add(InterceptorsWrapper(onRequest:(options){
+    options.headers["zbgj-user"] = "";
+    options.headers["User-Agent"] = "";
+  }));
+  /**
+   * 网络请求日志
+   */
+  api.interceptors.add(LogInterceptor(requestBody: true,responseHeader: false,responseBody: true));
+
   BaseApi baseApi = BaseApi(api);
-  var response = await baseApi.test2();
+  var response = await baseApi.test3();
   print(response.result);
 }

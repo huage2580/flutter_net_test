@@ -1,6 +1,7 @@
 import 'package:flutter_net_test/model/demo4_entity.dart';
 import 'package:flutter_net_test/model/test2_bean_entity.dart';
 import 'package:flutter_net_test/model/test3_entity.dart';
+import 'package:flutter_net_test/model/test_mutil_entity.dart';
 
 class EntityFactory {
   static T generateOBJ<T>(json) {
@@ -12,6 +13,8 @@ class EntityFactory {
       return Test2BeanEntity.fromJson(json) as T;
     } else if (T.toString() == "Test3Entity") {
       return Test3Entity.fromJson(json) as T;
+    } else if (T.toString() == "TestMutilEntity") {
+      return TestMutilEntity.fromJson(json) as T;
     } else {
       return null;
     }
